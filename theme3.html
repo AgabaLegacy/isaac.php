@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Hospital Management System</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #f4f4f4;
+            --text-color: #333;
+            --background-color: #ffffff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: var(--secondary-color);
+            padding: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 40px;
+            background-color: var(--background-color);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        form {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+        tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+        .dashboard-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .dashboard-card {
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: calc(33% - 20px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .dashboard-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        #login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .dashboard-card {
+                width: 100%;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Advanced Hospital Management System</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#patient-management">Patient Management</a></li>
+            <li><a href="#appointment-scheduling">Appointment Scheduling</a></li>
+            <li><a href="#staff-management">Staff Management</a></li>
+            <li><a href="#medical-records">Medical Records</a></li>
+            <li><a href="#billing">Billing</a></li>
+            <li><a href="#inventory">Inventory</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>Total Patients</h3>
+                    <p>1,234</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Today's Appointments</h3>
+                    <p>42</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Available Beds</h3>
+                    <p>15</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="patient-management">
+            <h2>Patient Management</h2>
+            <form id="add-patient-form">
+                <h3>Add New Patient</h3>
+                <label for="patient-name">Patient Name:</label>
+                <input type="text" id="patient-name" name="patient-name" required>
+                
+                <label for="patient-dob">Date of Birth:</label>
+                <input type="date" id="patient-dob" name="patient-dob" required>
+                
+                <label for="patient-gender">Gender:</label>
+                <select id="patient-gender" name="patient-gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <label for="patient-contact">Contact Number:</label>
+                <input type="text" id="patient-contact" name="patient-contact" required>
+                
+                <label for="patient-address">Address:</label>
+                <textarea id="patient-address" name="patient-address" rows="3" required></textarea>
+                
+                <input type="submit" value="Add Patient">
+            </form>
+        </section>
+        
+        <section id="appointment-scheduling">
+            <h2>Appointment Scheduling</h2>
+            <form id="schedule-appointment-form">
+                <h3>Schedule New Appointment</h3>
+                <label for="appointment-patient">Patient Name:</label>
+                <input type="text" id="appointment-patient" name="appointment-patient" required>
+                
+                <label for="appointment-doctor">Doctor Name:</label>
+                <input type="text" id="appointment-doctor" name="appointment-doctor" required>
+                
+                <label for="appointment-date">Appointment Date:</label>
+                <input type="date" id="appointment-date" name="appointment-date" required>
+                
+                <label for="appointment-time">Appointment Time:</label>
+                <input type="time" id="appointment-time" name="appointment-time" required>
+                
+                <label for="appointment-reason">Reason for Visit:</label>
+                <textarea id="appointment-reason" name="appointment-reason" rows="3" required></textarea>
+                
+                <input type="submit" value="Schedule Appointment">
+            </form>
+        </section>
+        
+        <section id="staff-management">
+            <h2>Staff Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dr. John Doe</td>
+                        <td>Cardiologist</td>
+                        <td>Cardiology</td>
+                        <td>john.doe@hospital.com</td>
+                        <td><button onclick="editStaff('John Doe')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Nurse Jane Smith</td>
+                        <td>Head Nurse</td>
+                        <td>Emergency</td>
+                        <td>jane.smith@hospital.com</td>
+                        <td><button onclick="editStaff('Jane Smith')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Emily Brown</td>
+                        <td>Pediatrician</td>
+                        <td>Pediatrics</td>
+                        <td>emily.brown@hospital.com</td>
+                        <td><button onclick="editStaff('Emily Brown')">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="medical-records">
+            <h2>Medical Records</h2>
+            <form id="search-records-form">
+                <h3>Search Patient Records</h3>
+                <label for="search-patient">Patient Name or ID:</label>
+                <input type="text" id="search-patient" name="search-patient" required>
+                <input type="submit" value="Search Records">
+            </form>
+            <!-- Placeholder for search results -->
+            <div id="search-results"></div>
+        </section>
+
+        <section id="billing">
+            <h2>Billing</h2>
+            <form id="generate-bill-form">
+                <h3>Generate Bill</h3>
+                <label for="bill-patient">Patient Name:</label>
+                <input type="text" id="bill-patient" name="bill-patient" required>
+                
+                <label for="bill-services">Services:</label>
+                <textarea id="bill-services" name="bill-services" rows="3" required></textarea>
+                
+                <label for="bill-amount">Total Amount:</label>
+                <input type="text" id="bill-amount" name="bill-amount" required>
+                
+                <input type="submit" value="Generate Bill">
+            </form>
+        </section>
+
+        <section id="inventory">
+            <h2>Inventory Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Surgical Masks</td>
+                        <td>PPE</td>
+                        <td>500</td>
+                        <td><button onclick="updateInventory('Surgical Masks')">Update</button></td>
+                    </tr>
+                    <tr>
+                        <td>Paracetamol</td>
+                        <td>Medication</td>
+                        <td>1000</td>
+                        <td><button onclick="updateInventory('Paracetamol')">Update</button></td>
+                    </tr>
+                    <tr>
+                        <td>Syringes</td>
+                        <td>Medical Supplies</td>
+                        <td>2000</td>
+                        <td><button onclick="updateInventory('Syringes')">Update</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <input type="submit" value="Login">
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Simple JavaScript to handle form submissions and button clicks
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Form submitted! In a real application, this would be processed on the server.');
+            });
+        });
+
+        function editStaff(name) {
+            alert(`Editing staff member: ${name}`);
+        }
+
+        function updateInventory(item) {
+            alert(`Updating inventory for: ${item}`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
